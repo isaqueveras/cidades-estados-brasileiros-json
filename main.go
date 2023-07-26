@@ -1,9 +1,13 @@
 package main
 
-import scpt "github.com/isaqueveras/cidades-estados-brasileiros-json/script"
+import "github.com/isaqueveras/cidades-estados-brasileiros-json/script"
 
 func main() {
-	scpt.LerDados()
-	scpt.ModelarDados()
-	scpt.SalvarDados()
+	gerarNovoArquivoComCidadeESlug()
+}
+
+func gerarNovoArquivoComCidadeESlug() {
+	bytes := script.LerArquivo()
+	dados := script.GerarDadosNovaEstrutura(bytes)
+	script.SalvarDados("./novo-arquivo.json", &dados)
 }
